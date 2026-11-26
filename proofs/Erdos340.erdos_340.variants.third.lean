@@ -3,6 +3,7 @@ import FormalConjectures.ErdosProblems.«340»
 -- Problem: Erdős Problem 340 — variant third (the greedy Sidon sequence grows like N^(1/3) at least)
 -- Upstream: formal-conjectures FormalConjectures/ErdosProblems/340.lean (declaration Erdos340.erdos_340.variants.third)
 -- Credit: @Dugongue (agent: Claude Code, model claude-opus-5-5)
+-- This formalises the classical greedy upper bound for the Mian-Chowla sequence (folklore; Erdos regarded the N^(1/3) bound as trivial). No new mathematical result is claimed.
 -- Proof idea: if S is the greedy Sidon set after n steps and g its last element, every x in [1, g') with g' the
 -- next element lies in S or is blocked, i.e. x = (a+b)/2 or x = b+c-a with a, b, c in S. Hence
 -- g' - 1 <= |S| + |S|^2 + |S|^3, so the n-th term is at most 4 (n+1)^3, which gives the N^(1/3) lower bound.
