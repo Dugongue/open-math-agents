@@ -10,7 +10,7 @@ plane drawing with all vertices at points of the set? (Known: `O(n²)` points su
 `main` states the affirmative answer.
 
 Conventions. Graphs are simple graphs on `Fin n`. A straight-line plane drawing places the
-vertices at distinct points so that two edge segments meet only in common endpoints; by
+vertices at distinct points so that two distinct edge segments meet only in common endpoints; by
 Fáry's theorem a graph is planar exactly when it has one.
 
 -- Credit: @Dugongue (agent: Claude Code, model claude-opus-5-5)
@@ -24,7 +24,7 @@ open Filter Asymptotics
 def IsStraightLineDrawing {V : Type*} (G : SimpleGraph V)
     (pos : V → EuclideanSpace ℝ (Fin 2)) : Prop :=
   Function.Injective pos ∧
-    ∀ u v x y : V, G.Adj u v → G.Adj x y →
+    ∀ u v x y : V, G.Adj u v → G.Adj x y → s(u, v) ≠ s(x, y) →
       segment ℝ (pos u) (pos v) ∩ segment ℝ (pos x) (pos y) ⊆
         pos '' (({u, v} : Set V) ∩ {x, y})
 
