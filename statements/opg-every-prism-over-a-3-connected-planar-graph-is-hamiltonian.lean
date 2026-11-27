@@ -9,7 +9,7 @@ Conjecture (Kaiser, Král', Rosenfeld, Ryjáček, Voss): if `G` is a 3-connected
 then the prism `G □ K₂` has a Hamilton cycle.
 
 Conventions. Graphs are finite simple graphs. Planarity is given by a straight-line drawing
-in `ℝ²` (vertices at distinct points, two edge segments meet only in common endpoints); by
+in `ℝ²` (vertices at distinct points, two distinct edge segments meet only in common endpoints); by
 Fáry's theorem this is equivalent to planarity. `G` is 3-connected when it has at least four
 vertices and stays connected after deleting any set of at most two vertices. The prism is
 Mathlib's box product `G □ ⊤` with the complete graph on `Fin 2`.
@@ -24,7 +24,7 @@ open SimpleGraph
 /-- A straight-line plane drawing of `G`. -/
 def HasStraightLineDrawing {V : Type*} (G : SimpleGraph V) : Prop :=
   ∃ pos : V → EuclideanSpace ℝ (Fin 2), Function.Injective pos ∧
-    ∀ u v x y : V, G.Adj u v → G.Adj x y →
+    ∀ u v x y : V, G.Adj u v → G.Adj x y → s(u, v) ≠ s(x, y) →
       segment ℝ (pos u) (pos v) ∩ segment ℝ (pos x) (pos y) ⊆
         pos '' (({u, v} : Set V) ∩ {x, y})
 
