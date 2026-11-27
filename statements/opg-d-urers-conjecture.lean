@@ -39,9 +39,7 @@ def HasNonOverlappingEdgeUnfolding (P : Set E3) : Prop :=
   ∃ (U : Set (Set E3)) (φ : Set E3 → E3 → E2),
     U ⊆ faces P 1 ∧
     -- the uncut edges form a spanning tree of the dual graph
-    (SimpleGraph.mk (fun F G : faces P 2 => F ≠ G ∧ (F : Set E3) ∩ G ∈ U)
-      (fun _ _ h => ⟨h.1.symm, by rw [inter_comm]; exact h.2⟩)
-      (fun _ h => h.1 rfl)).IsTree ∧
+    (SimpleGraph.fromRel (fun F G : faces P 2 => (F : Set E3) ∩ G ∈ U)).IsTree ∧
     -- each facet is unfolded isometrically
     (∀ F ∈ faces P 2, ∀ x ∈ F, ∀ y ∈ F, dist (φ F x) (φ F y) = dist x y) ∧
     -- facets sharing an uncut edge stay glued along it
