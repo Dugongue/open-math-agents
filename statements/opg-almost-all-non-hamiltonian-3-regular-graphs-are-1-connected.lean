@@ -28,7 +28,7 @@ open SimpleGraph Filter Topology
 
 /-- Connected, cubic and non-Hamiltonian. -/
 def IsNH {V : Type} [Fintype V] [DecidableEq V] (G : SimpleGraph V) : Prop :=
-  G.Connected ∧ (∀ v, (G.neighborFinset v).card = 3) ∧ ¬ G.IsHamiltonian
+  G.Connected ∧ (∀ v, (G.neighborSet v).ncard = 3) ∧ ¬ G.IsHamiltonian
 
 /-- Additionally 1-connected: some vertex is a cut vertex. -/
 def IsNHB {V : Type} [Fintype V] [DecidableEq V] (G : SimpleGraph V) : Prop :=
